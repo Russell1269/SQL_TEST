@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data table</title>
+    <style>
+      table,
+      tr,
+      th,
+      td {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Data Table</h1>
+    <form action="/user/add" method="get"><button>Add new user</button></form><br><br>
+    <table>
+      <tr>
+        <th>User ID</th>
+        <th>User Name</th>
+        <th>Email</th>
+      </tr>
+      <%for(user of users){%>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.username %></td>
+        <td><%= user.email %></td>
+        <td>
+          <form method="get" action="/user/<%= user.id %>/edit"><button>Edit User name</button></form>
+          <form action="/user/'<%=user.id%>'?_method=DELETE" method="post"><button>Delete</button></form>
+        </td>
+      </tr>
+      <%}%>
+    </table>
+  </body>
+</html>
